@@ -1,0 +1,15 @@
+CAMERA CALIBRATION REPORT
+==================================================
+
+Successful Images : 11
+Rejected Images   : 16
+
+Camera Matrix
+[[1.06676124e+03 0.00000000e+00 4.96572076e+02]
+ [0.00000000e+00 1.04717313e+03 5.89846787e+02]
+ [0.00000000e+00 0.00000000e+00 1.00000000e+00]]
+
+Distortion Coefficients
+[[ 0.01583248 -0.24401569  0.00119256 -0.00728955 -0.48084251]]
+
+Mean Reprojection Error : 0.393521 pixels
