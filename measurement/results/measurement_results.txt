@@ -1,0 +1,86 @@
+BOOK MEASUREMENT ACCURACY REPORT
+======================================================================
+
+Real book width  : 135.0 mm
+Real book height : 195.0 mm
+
+Image: book_042_jpeg.rf.OrNHeUlc4mc4BXJhSNrW.jpeg
+  GT size (px)       : 801.03 x 1018.35
+  Pred size (px)     : 727.16 x 1086.05
+  Pred size (mm)     : 122.55 x 207.96
+  Width error        : 73.87 px / 12.45 mm
+  Height error       : 67.71 px / 12.96 mm
+  IoU                : 0.8588
+  Dice               : 0.9240
+
+Image: book_034_jpeg.rf.2qFmZ692jwZUjGXDAWp1.jpeg
+  GT size (px)       : 611.12 x 978.67
+  Pred size (px)     : 490.29 x 859.11
+  Pred size (mm)     : 108.31 x 171.18
+  Width error        : 120.83 px / 26.69 mm
+  Height error       : 119.56 px / 23.82 mm
+  IoU                : 0.7207
+  Dice               : 0.8377
+
+Image: book_032_jpeg.rf.g5nzqRdiOe2vFkbCH7WP.jpeg
+  GT size (px)       : 963.53 x 1120.73
+  Pred size (px)     : 1017.00 x 1110.00
+  Pred size (mm)     : 142.49 x 193.13
+  Width error        : 53.47 px / 7.49 mm
+  Height error       : 10.73 px / 1.87 mm
+  IoU                : 0.9477
+  Dice               : 0.9732
+
+Image: book_010_jpeg.rf.JZJ7ZcdckrL3BF6gMUEw.jpeg
+  GT size (px)       : 689.06 x 855.58
+  Pred size (px)     : 675.24 x 972.63
+  Pred size (mm)     : 132.29 x 221.68
+  Width error        : 13.82 px / 2.71 mm
+  Height error       : 117.04 px / 26.68 mm
+  IoU                : 0.8575
+  Dice               : 0.9233
+
+Image: book_054_jpeg.rf.N5B27a3Vi5SPlaxKCJbf.jpeg
+  GT size (px)       : 1030.38 x 1069.20
+  Pred size (px)     : 751.92 x 1014.50
+  Pred size (mm)     : 98.52 x 185.02
+  Width error        : 278.46 px / 36.48 mm
+  Height error       : 54.70 px / 9.98 mm
+  IoU                : 0.7994
+  Dice               : 0.8885
+
+Image: book_020_jpeg.rf.CrNm9ysG5y6lSe7hWSFd.jpeg
+  GT size (px)       : 633.50 x 1108.25
+  Pred size (px)     : 635.15 x 1077.59
+  Pred size (mm)     : 135.35 x 189.60
+  Width error        : 1.65 px / 0.35 mm
+  Height error       : 30.66 px / 5.40 mm
+  IoU                : 0.9523
+  Dice               : 0.9756
+
+Image: book_024_jpeg.rf.l9MypR05Kzsmk6J0KNeT.jpeg
+  GT size (px)       : 422.82 x 1083.66
+  Pred size (px)     : 447.85 x 1144.90
+  Pred size (mm)     : 142.99 x 206.02
+  Width error        : 25.03 px / 7.99 mm
+  Height error       : 61.24 px / 11.02 mm
+  IoU                : 0.9361
+  Dice               : 0.9670
+
+Image: book_007_jpeg.rf.Z8nalIAsmMmSIUfsihGw.jpeg
+  GT size (px)       : 486.42 x 1142.37
+  Pred size (px)     : 478.39 x 1117.75
+  Pred size (mm)     : 132.77 x 190.80
+  Width error        : 8.03 px / 2.23 mm
+  Height error       : 24.62 px / 4.20 mm
+  IoU                : 0.9228
+  Dice               : 0.9598
+
+======================================================================
+FINAL SUMMARY
+======================================================================
+Images evaluated              : 8
+Mean IoU                      : 0.8744
+Mean Dice                     : 0.9311
+Mean width error             : 71.89 px / 12.05 mm
+Mean height error            : 60.78 px / 11.99 mm

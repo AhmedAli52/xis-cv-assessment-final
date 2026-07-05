@@ -1,0 +1,7 @@
+MODEL EVALUATION REPORT
+============================================================
+Total test images         : 8
+Successful detections     : 8
+Detection rate            : 1.0000
+Mean IoU                  : 0.8744
+Mean Dice Score           : 0.9311

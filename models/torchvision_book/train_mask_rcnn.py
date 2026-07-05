@@ -1,6 +1,8 @@
 import os
 import torch
 import torchvision
+import json
+import matplotlib.pyplot as plt
 from torch.utils.data import DataLoader
 from torchvision.models.detection import maskrcnn_resnet50_fpn
 from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
@@ -40,7 +42,10 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # Model
 # ==========================================================
 def get_model(num_classes):
-    model = maskrcnn_resnet50_fpn(weights="DEFAULT")
+    model = maskrcnn_resnet50_fpn(
+        weights="DEFAULT",
+        weights_backbone=None
+    )
 
     # Replace box predictor
     in_features_box = model.roi_heads.box_predictor.cls_score.in_features
@@ -126,7 +131,13 @@ def evaluate_loss(model, data_loader, device):
 # ==========================================================
 # Training loop
 # ==========================================================
+best_model_path = os.path.join(
+    OUTPUT_DIR,
+    "best_mask_rcnn_book.pth"
+)
 best_val_loss = float("inf")
+train_losses = []
+val_losses = []
 
 for epoch in range(NUM_EPOCHS):
     model.train()
@@ -153,6 +164,8 @@ for epoch in range(NUM_EPOCHS):
 
     avg_train_loss = epoch_loss / max(len(train_loader), 1)
     avg_val_loss = evaluate_loss(model, valid_loader, DEVICE)
+    train_losses.append(avg_train_loss)
+    val_losses.append(avg_val_loss)
 
     print("=" * 60)
     print(f"Epoch {epoch+1} completed")
@@ -170,3 +183,84 @@ for epoch in range(NUM_EPOCHS):
         print(f"Best model saved to: {best_model_path}")
 
 print("\nTraining completed.")
+
+# ==========================================================
+# Save training history
+# ==========================================================
+history = {
+    "epochs": NUM_EPOCHS,
+    "batch_size": BATCH_SIZE,
+    "learning_rate": LEARNING_RATE,
+    "train_loss": train_losses,
+    "validation_loss": val_losses
+}
+
+history_path = os.path.join(OUTPUT_DIR, "history.json")
+
+with open(history_path, "w") as f:
+    json.dump(history, f, indent=4)
+
+print(f"Training history saved to: {history_path}")
+
+# ==========================================================
+# Save training log
+# ==========================================================
+log_path = os.path.join(OUTPUT_DIR, "training_log.txt")
+
+with open(log_path, "w") as f:
+    f.write("MODEL TRAINING REPORT\n")
+    f.write("=" * 60 + "\n\n")
+
+    f.write(f"Epochs          : {NUM_EPOCHS}\n")
+    f.write(f"Batch Size      : {BATCH_SIZE}\n")
+    f.write(f"Learning Rate   : {LEARNING_RATE}\n")
+    f.write("Optimizer       : Adam\n")
+    f.write("Scheduler       : StepLR\n")
+    f.write(f"Best Validation Loss : {best_val_loss:.4f}\n\n")
+
+    f.write("Epoch-wise Losses\n")
+    f.write("-" * 40 + "\n")
+
+    for i, (train_loss, val_loss) in enumerate(zip(train_losses, val_losses), start=1):
+        f.write(
+            f"Epoch {i}: "
+            f"Train Loss = {train_loss:.4f}, "
+            f"Validation Loss = {val_loss:.4f}\n"
+        )
+
+print(f"Training log saved to: {log_path}")
+
+# ==========================================================
+# Save loss curve
+# ==========================================================
+plt.figure(figsize=(8, 5))
+
+plt.plot(
+    range(1, len(train_losses) + 1),
+    train_losses,
+    marker="o",
+    label="Training Loss"
+)
+
+plt.plot(
+    range(1, len(val_losses) + 1),
+    val_losses,
+    marker="o",
+    label="Validation Loss"
+)
+
+plt.xlabel("Epoch")
+plt.ylabel("Loss")
+plt.title("Mask R-CNN Training Loss")
+
+plt.grid(True)
+plt.legend()
+
+plot_path = os.path.join(OUTPUT_DIR, "loss_curve.png")
+
+plt.savefig(plot_path, dpi=300)
+plt.close()
+
+print(f"Best model saved at: {best_model_path}")
+
+print(f"Loss curve saved to: {plot_path}")
